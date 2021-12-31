@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Suite" thread-count="5" parallel="tests">
+  <test thread-count="2" name="Firefox Test">
+  <parameter name="browser" value="Chrome" />
+  <parameter name="implicitWait" value="10" />
+    <classes>
+      <class name="testCases.ExecuteLoginTest"/>
+	  <methods>
+        <include name="validLoginTest" />
+		<include name="invalidLoginTest" />
+      </methods>
+    </classes>
+  </test>
+</suite> <!-- Suite --> 

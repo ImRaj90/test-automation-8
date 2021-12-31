@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="library.Utility"/>
+  </listeners>
+  <test thread-count="5" parallel="tests" name="Chrome Test(failed)">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="testCases.ExecuteLoginTest">
+        <methods>
+          <include name="validLoginTest" invocation-numbers="1"/>
+          <include name="openDriver"/>
+          <include name="closeDriver"/>
+        </methods>
+      </class> <!-- testCases.ExecuteLoginTest -->
+    </classes>
+  </test> <!-- Chrome Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

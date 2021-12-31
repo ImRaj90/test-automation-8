@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Suite" thread-count="5" parallel="tests">
+<listeners>
+    <listener class-name="library.Utility" />
+  </listeners>
+  <test thread-count="2" name="Chrome Test">
+  <parameter name="browser" value="Chrome" />
+   <classes>
+      <class name="testCases.ExecuteLoginTest"/>
+	  <methods>
+        <include name="validLoginTest" />
+		<include name="invalidLoginTest" />
+      </methods>
+    </classes>
+  </test> 
+  <!--
+  <test thread-count="2" name="Firefox Test">
+  <parameter name="browser" value="Firefox" />
+  <parameter name="implicitWait" value="10" />
+    <classes>
+      <class name="testCases.ExecuteLoginTest"/>
+	  <methods>
+        <include name="validLoginTest" />
+		<include name="invalidLoginTest" />
+      </methods>
+    </classes>
+  </test>
+  <test thread-count="2" name="MS Edge Test">
+  <parameter name="browser" value="Edge" />
+  <parameter name="implicitWait" value="5" />
+    <classes>
+      <class name="testCases.ExecuteLoginTest"/>
+	  <methods>
+        <include name="validLoginTest" />
+		<include name="invalidLoginTest" />
+      </methods>
+    </classes>
+  </test>
+  -->
+</suite> <!-- Suite --> 
