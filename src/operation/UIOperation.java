@@ -6,6 +6,7 @@ import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class UIOperation {
@@ -53,7 +54,7 @@ public class UIOperation {
 			break;	
 		case "ISELEMENTPRESENT":
 			//Get text of an element
-			assertTrue(driver.findElements(this.getObject(objectName,objectType)).size()<0);
+			assertTrue(driver.findElements(this.getObject(objectName,objectType)).size()>0,"Page does not contain element; "+driver.findElements(this.getObject(objectName,objectType)));
 			break;	
 		case "VALIDATETEXT":
 			assertTrue(driver.getPageSource().contains(value),"Page does not contain text; "+value);
@@ -61,7 +62,7 @@ public class UIOperation {
 		case "VALIDATEELEMENTTEXT":
 			assertTrue(driver.findElement(this.getObject(objectName,objectType)).getText().contains(value),"Expected; "+value+" ; Actual; "+driver.findElement(this.getObject(objectName,objectType)).getText());
 			break;
-
+		
 		default:
 			break;
 		}

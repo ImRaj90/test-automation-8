@@ -12,6 +12,10 @@
         <include name="validLoginTest" />
 		<include name="invalidLoginTest" />
       </methods>
+      <class name="testCases.ExecuteHomePage"/>
+      <methods>
+        <include name="selectActionTest" />
+       </methods> 
     </classes>
   </test> 
   <!--
