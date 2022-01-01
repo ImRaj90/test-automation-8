@@ -1,7 +1,9 @@
 package operation;
 
-import static org.testng.AssertJUnit.assertTrue;
+//import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -54,10 +56,10 @@ public class UIOperation {
 			assertTrue(driver.findElements(this.getObject(objectName,objectType)).size()<0);
 			break;	
 		case "VALIDATETEXT":
-			assertTrue(driver.getPageSource().contains(value));
+			assertTrue(driver.getPageSource().contains(value),"Page does not contain text; "+value);
 			break;
 		case "VALIDATEELEMENTTEXT":
-			assertTrue(driver.findElement(this.getObject(objectName,objectType)).getText().contains(value));
+			assertTrue(driver.findElement(this.getObject(objectName,objectType)).getText().contains(value),"Expected; "+value+" ; Actual; "+driver.findElement(this.getObject(objectName,objectType)).getText());
 			break;
 
 		default:
