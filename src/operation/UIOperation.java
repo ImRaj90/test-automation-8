@@ -3,8 +3,13 @@ package operation;
 //import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+
+import java.io.File;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
 
 
 public class UIOperation {
@@ -60,7 +65,12 @@ public class UIOperation {
 		case "VALIDATEELEMENTTEXT":
 			assertTrue(driver.findElement(this.getObject(objectName,objectType)).getText().contains(value),"Expected; "+value+" ; Actual; "+driver.findElement(this.getObject(objectName,objectType)).getText());
 			break;
-		
+		case "GETSCREENSHOTELEMENT":
+			System.out.println("TEst");
+			File source=driver.findElement(this.getObject(objectName,objectType)).getScreenshotAs(OutputType.FILE);
+			File destFile =new File("./Screenshots/"+driver.findElement(this.getObject(objectName,objectType)).getText()+"_"+(System.currentTimeMillis())+".png");
+			FileHandler.copy(source, destFile);
+			break;
 		default:
 			break;
 		}

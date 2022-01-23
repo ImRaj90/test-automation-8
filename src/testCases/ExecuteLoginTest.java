@@ -72,6 +72,16 @@ public class ExecuteLoginTest {
     				    			   
     			
     		}
+	 
+	 @Test (dataProvider = "testData")
+	 public void validLoginScreenshotTest(String userName, String button1, String password, String button2, String element,String list , String validateText) throws IOException , Exception {
+	   String[] variables = {userName,button1,password,button2,element,list,validateText};
+       ExecuteTestMain t = new ExecuteTestMain();
+       t.ExecuteTest(webdriver, "validLoginScreenshotTest", variables , testCaseandDataFile);
+       
+    				    			   
+    			
+    		}
 	}
     
     

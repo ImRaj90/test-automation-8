@@ -9,12 +9,16 @@
    <classes>
       <class name="testCases.ExecuteLoginTest"/>
 	  <methods>
+	  
         <include name="validLoginTest" />
-		<include name="invalidLoginTest" />
+		<include name="invalidLoginTest" /> 
+		<include name="validLoginScreenshotTest" />
       </methods>
+       
       <class name="testCases.ExecuteHomePage"/>
       <methods>
-        <include name="selectActionTest" />
+     
+        <include name="selectActionTest" /> 
        </methods> 
     </classes>
   </test> 
