@@ -6,20 +6,21 @@
   </listeners>
   <test thread-count="2" name="Chrome Test">
   <parameter name="browser" value="Chrome" />
+  <parameter name="condition" value="false" />
    <classes>
-      <class name="testCases.ExecuteLoginTest"/>
+      <class name="testCases.ExecuteLoginTestNetwork"/>
 	  <methods>
-	  
+	  <!--
         <include name="validLoginTest" />
-		<include name="invalidLoginTest" /> 
-		<include name="validLoginScreenshotTest" />
+		<include name="invalidLoginTest" />  -->
+		<include name="testRun" />
       </methods>
-       
+      <!-- 
       <class name="testCases.ExecuteHomePage"/>
       <methods>
      
         <include name="selectActionTest" /> 
-       </methods> 
+       </methods> -->
     </classes>
   </test> 
   <!--

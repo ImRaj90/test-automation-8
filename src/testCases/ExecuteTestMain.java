@@ -3,6 +3,10 @@ package testCases;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import operation.ReadProperties;
 import operation.UIOperation;
 import org.apache.poi.ss.usermodel.Row;
@@ -11,6 +15,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v97.emulation.Emulation;
+import org.openqa.selenium.devtools.v97.log.Log;
+import org.openqa.selenium.devtools.v97.network.Network;
+import org.openqa.selenium.devtools.v97.network.model.ConnectionType;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
@@ -114,7 +123,7 @@ public class ExecuteTestMain {
 					//set path to chromedriver.exe
 					System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\chromedriver.exe");
 					//create chrome instance
-					driver = new ChromeDriver();
+					driver = new ChromeDriver();					
 				}
 				//Check if parameter passed as 'Edge'
 						else if(browser.equalsIgnoreCase("Edge")){
@@ -131,9 +140,52 @@ public class ExecuteTestMain {
 				return driver;
 	}
 	
+	public WebDriver setupBrowserWithNetwork(boolean condition) {
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\chromedriver.exe");
+		driver = new ChromeDriver();
+		DevTools devTools = ((ChromeDriver) driver).getDevTools();
+		devTools.createSession();
+		devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+		System.out.println(condition);
+		devTools.send(Network.emulateNetworkConditions(condition, -1, -1, -1, Optional.of(ConnectionType.WIFI)));
+		//Get HTTP Request
+		/*devTools.addListener(Network.requestWillBeSent(),
+                entry -> {
+                    System.out.println("URI : " + entry.getRequest().getUrl()+"\n"
+                    + " method : "+entry.getRequest().getMethod() + "\n");
+                    });*/
+		//Simulate Device
+		/*Map<String, Object> deviceParameters = new HashMap<>();
+        
+		deviceParameters.put("width", 600);
+		deviceParameters.put("height", 1000);
+		deviceParameters.put("mobile", true);
+		deviceParameters.put("deviceScaleFactor", 100);
+        
+        ((ChromeDriver) driver).executeCdpCommand("Emulation.setDeviceMetricsOverride", deviceParameters);*/
+        
+        //Set Geolocation
+        /*devTools.send(Emulation.setGeolocationOverride(
+                Optional.of(37.7833),
+                Optional.of(76.4378),
+                Optional.of(95)));*/
+        
+        //Console Logs
+       /* devTools.send(Log.enable());
+        devTools.addListener(Log.entryAdded(),
+                logEntry -> {
+                    System.out.println("log: "+logEntry.getText());
+                    System.out.println("level: "+logEntry.getLevel());
+                });*/
+        
+		return driver;		
+	}
+	
 	public void navigateToHomePage(WebDriver driver) throws Exception {
 		driver.get(p.getObjectRepository().getProperty("url"));
 		driver.manage().window().maximize();
+		
 	}
 	
 	public void setTimeout(WebDriver driver) throws Exception {
