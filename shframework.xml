@@ -8,12 +8,11 @@
   <parameter name="browser" value="Chrome" />
   <parameter name="condition" value="false" />
    <classes>
-      <class name="testCases.ExecuteLoginTestNetwork"/>
+      <class name="testCases.ExecuteOpenTab"/>
 	  <methods>
-	  <!--
-        <include name="validLoginTest" />
-		<include name="invalidLoginTest" />  -->
-		<include name="testRun" />
+	    <include name="openTab" />
+		<include name="openWindow" /> 
+	
       </methods>
       <!-- 
       <class name="testCases.ExecuteHomePage"/>
