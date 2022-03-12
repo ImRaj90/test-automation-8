@@ -8,12 +8,19 @@
   <parameter name="browser" value="Chrome" />
   <parameter name="condition" value="false" />
    <classes>
+   <class name="testCases.ExecuteRelativeLocators"/>
+	  <methods>
+	    <include name="testRelativeLocators" />
+	    <include name="getTags" />
+			
+      </methods>
+      <!--
       <class name="testCases.ExecuteOpenTab"/>
 	  <methods>
 	    <include name="openTab" />
 		<include name="openWindow" /> 
 	
-      </methods>
+      </methods>-->
       <!-- 
       <class name="testCases.ExecuteHomePage"/>
       <methods>
