@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <suite name="Suite" thread-count="5" parallel="tests">
 <listeners>
     <listener class-name="library.Utility" />
@@ -8,12 +7,20 @@
   <parameter name="browser" value="Chrome" />
   <parameter name="condition" value="false" />
    <classes>
+   
+   <class name="testCases.ExecuteSoftHardAssertions"/>
+	  <methods>
+	    <include name="softAssertion" />
+	    <include name="softAssertionAll" />
+			
+      </methods>
+   <!--       
    <class name="testCases.ExecuteRelativeLocators"/>
 	  <methods>
 	    <include name="testRelativeLocators" />
 	    <include name="getTags" />
 			
-      </methods>
+      </methods>-->
       <!--
       <class name="testCases.ExecuteOpenTab"/>
 	  <methods>

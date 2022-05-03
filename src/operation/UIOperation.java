@@ -3,6 +3,7 @@ package operation;
 //import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 
@@ -15,12 +16,16 @@ import org.openqa.selenium.io.FileHandler;
 public class UIOperation {
 
 	WebDriver driver;
-	public UIOperation(WebDriver driver){
+	SoftAssert softassert;
+	public UIOperation(WebDriver driver, SoftAssert softassert){
 		this.driver = driver;
+		this.softassert = softassert;
+		
 	}
 	//public void perform(Properties p,String operation,String objectName,String objectType,String value) throws Exception{
 	public void perform(String operation,String objectName,String objectType,String value) throws Exception{
 		System.out.println("");
+		
 		switch (operation.toUpperCase()) {
 		case "CLICK":
 			//Perform click
@@ -55,15 +60,32 @@ public class UIOperation {
 			//Get text of an element
 			assertEquals(driver.getTitle(),value);
 			break;	
+		case "SOFTVERIFYTITLE":
+			//softassert.assertEquals(driver.getTitle(),value);
+			softassert.assertEquals(driver.getTitle(),value,"Wrong Title");
+			break;			
 		case "ISELEMENTPRESENT":
 			//Get text of an element
 			assertTrue(driver.findElements(this.getObject(objectName,objectType)).size()>0,"Page does not contain element; "+driver.findElements(this.getObject(objectName,objectType)));
-			break;	
+			break;
+		case "SOFTISELEMENTPRESENT":
+			//Get text of an element
+			softassert.assertTrue(driver.findElements(this.getObject(objectName,objectType)).size()>0,"Page does not contain element; "+driver.findElements(this.getObject(objectName,objectType)));
+			break;		
 		case "VALIDATETEXT":
 			assertTrue(driver.getPageSource().contains(value),"Page does not contain text; "+value);
 			break;
+		case "SOFTVALIDATETEXT":
+			softassert.assertTrue(driver.getPageSource().contains(value),"Page does not contain text; "+value);
+			break;	
 		case "VALIDATEELEMENTTEXT":
 			assertTrue(driver.findElement(this.getObject(objectName,objectType)).getText().contains(value),"Expected; "+value+" ; Actual; "+driver.findElement(this.getObject(objectName,objectType)).getText());
+			break;
+		case "SOFTVALIDATEELEMENTTEXT":
+			softassert.assertTrue(driver.findElement(this.getObject(objectName,objectType)).getText().contains(value),"Expected; "+value+" ; Actual; "+driver.findElement(this.getObject(objectName,objectType)).getText());
+			break;
+		case "SOFTVALIDATEALL":
+			softassert.assertAll();
 			break;
 		case "GETSCREENSHOTELEMENT":
 			System.out.println("TEst");

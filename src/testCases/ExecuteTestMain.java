@@ -3,8 +3,6 @@ package testCases;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import operation.ReadProperties;
@@ -16,8 +14,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v97.emulation.Emulation;
-import org.openqa.selenium.devtools.v97.log.Log;
 import org.openqa.selenium.devtools.v97.network.Network;
 import org.openqa.selenium.devtools.v97.network.model.ConnectionType;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -25,6 +21,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 import java.lang.Integer;
 import excelExportAndFileIO.ReadExcelFile;
@@ -35,8 +32,9 @@ public class ExecuteTestMain {
 		
 	public void ExecuteTest(WebDriver webdriver, String sheetName, String[] variables , String testCasesandDataFile ) throws IOException , Exception {
 	ReadExcelFile file = new ReadExcelFile();
+	SoftAssert softassert = new SoftAssert();
 	    
-    UIOperation operation = new UIOperation(webdriver);
+    UIOperation operation = new UIOperation(webdriver,softassert);
     //Read keyword sheet
     Sheet keyWordFrameWorkSheet = file.readExcel(System.getProperty("user.dir")+"\\",testCasesandDataFile , sheetName);
   //Find number of rows in excel file
@@ -66,8 +64,9 @@ public class ExecuteTestMain {
 	
 	public void ExecuteFeature(WebDriver webdriver, String sheetName, String[] variables , String testCasesandDataFile ) throws IOException , Exception {
 		ReadExcelFile file = new ReadExcelFile();
+		SoftAssert softassert = new SoftAssert();
 		    
-	    UIOperation operation = new UIOperation(webdriver);
+	    UIOperation operation = new UIOperation(webdriver,softassert);
 	    //Read keyword sheet
 	    Sheet keyWordFrameWorkSheet = file.readExcel(System.getProperty("user.dir")+"\\",testCasesandDataFile , sheetName);
 	  //Find number of rows in excel file
